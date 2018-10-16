@@ -1,22 +1,54 @@
-class Meizi {
-  Meizi({
-    this.title,
-    this.url,
-  });
+import 'dart:core';
 
-  final String title;
-  final String url;
+import 'package:json_annotation/json_annotation.dart';
+part 'meizi.g.dart';
 
-  @override
-  bool operator == (Object other) {
-    identical(this, other) ||
-    other is Meizi &&
-      title == other.title &&
-      url == other.url;
-  }
 
-  @override
-  int get hashCode =>
-      title.hashCode ^
-      url.hashCode;
+@JsonSerializable()
+class MeiZi {
+  String status;
+  int current_page;
+  int total_comments;
+  int page_count;
+  int count;
+  List<Comments> comments;
+  MeiZi({
+    this.status,
+    this.current_page,
+    this.total_comments,
+    this.page_count, this.count,
+    this.comments});
+  factory MeiZi.fromJson(Map<String, dynamic> json) => _$MeiZiFromJson(json);
+  Map<String, dynamic> toJson() => _$MeiZiToJson(this);
+}
+
+@JsonSerializable()
+class Comments {
+  String comment_ID;
+  String comment_post_ID;
+  String comment_author;
+  String comment_date;
+  String comment_date_gmt;
+  String comment_content;
+  String user_id;
+  String vote_positive;
+  String vote_negative;
+  String sub_comment_count;
+  String text_content;
+  List pics;
+  Comments({
+    this.comment_ID,
+    this.comment_post_ID,
+    this.comment_author,
+    this.comment_date,
+    this.comment_date_gmt,
+    this.comment_content,
+    this.user_id,
+    this.vote_positive,
+    this.vote_negative,
+    this.sub_comment_count,
+    this.text_content,
+    this.pics});
+  factory Comments.fromJson(Map<String, dynamic> json) => _$CommentsFromJson(json);
+  Map<String, dynamic> toJson() => _$CommentsToJson(this);
 }
