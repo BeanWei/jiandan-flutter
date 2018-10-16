@@ -16,7 +16,8 @@ class MeiziPage extends StatefulWidget {
 }
 
 class _MeiziPageState extends State<MeiziPage> {
-  List<MeiZi> meiziList = [];
+  //List<MeiZi> meiziList = [];
+  List meiziList = [];
 
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   GlobalKey<RefreshIndicatorState> _refreshIndicatorKey = GlobalKey();
@@ -164,8 +165,8 @@ class _MeiziPageState extends State<MeiziPage> {
     setState(() {});
   }
 
-  Widget _buildImageItem(List<Comments> comments) {
-    String picurl = comments.pics;
+  Widget _buildImageItem(String picurl) {
+    //String picurl = comments.pics;
     return new GestureDetector(
       onTap: () {
         Navigator.push(
