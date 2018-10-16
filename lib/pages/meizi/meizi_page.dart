@@ -12,11 +12,11 @@ import 'package:jiandan/models/meizi.dart';
 
 class MeiziPage extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => MeiziPageState();
+  _MeiziPageState createState() => _MeiziPageState();
 }
 
-class MeiziPageState extends State<MeiziPage> {
-  List<Meizi> meiziList = [];
+class _MeiziPageState extends State<MeiziPage> {
+  List<MeiZi> meiziList = [];
 
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   GlobalKey<RefreshIndicatorState> _refreshIndicatorKey = GlobalKey();
@@ -131,6 +131,7 @@ class MeiziPageState extends State<MeiziPage> {
     return new Scaffold(
       key: _scaffoldKey,
       body: new RefreshIndicator(
+          key: _refreshIndicatorKey,
           child: _buildRefreshContent(),
           onRefresh: _handleRefresh),
       floatingActionButton: _buildFloatActionButton(),
@@ -148,36 +149,33 @@ class MeiziPageState extends State<MeiziPage> {
     Dio dio = new Dio();
     String url = ApiUri.MeiZi_List.replaceFirst('@page', _page.toString());
     Response response = await dio.get(url);
+    MeiZi meizi = MeiZi.fromJson(response.data);
     _page++;
     if (isClean) {
       meiziList.clear();
     } else {}
-    if (response.data != null) {
-      Map<String, dynamic> map = json.decode(response.data);
-      var comments = map['comments'];
-      setState(() {
-        for (var comment in comments) {
-          var pics = comment['pics'];
-          var id = comment['comment_ID'];
-          Meizi meizi = new Meizi(id: id, url: pics[0]);
-          meiziList.add(meizi);
-        }
-      });
+    var comments = meizi.comments;
+    for (var comment in comments) {
+      var pics = comment.pics;
+      for (var p in pics) {
+        meiziList.add(p);
+      }
     }
-
+    setState(() {});
   }
 
-  Widget _buildImageItem(Meizi meizi) {
+  Widget _buildImageItem(List<Comments> comments) {
+    String picurl = comments.pics;
     return new GestureDetector(
       onTap: () {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => new ImagePreViewWidget(url: meizi.url),
+                builder: (context) => new ImagePreViewWidget(url: picurl),
             )
         );
       },
-      child: new Hero(tag: meizi.url, child: CachedNetworkImage(imageUrl: meizi.url)),
+      child: new Hero(tag: picurl, child: CachedNetworkImage(imageUrl: picurl)),
     );
   }
 
