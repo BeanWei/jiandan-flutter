@@ -11,7 +11,7 @@ class MeiZi {
   int total_comments;
   int page_count;
   int count;
-  List<Comments> comments;
+  List<MeiZiComments> comments;
   MeiZi({
     this.status,
     this.current_page,
@@ -23,7 +23,7 @@ class MeiZi {
 }
 
 @JsonSerializable()
-class Comments {
+class MeiZiComments {
   String comment_ID;
   String comment_post_ID;
   String comment_author;
@@ -36,7 +36,7 @@ class Comments {
   String sub_comment_count;
   String text_content;
   List pics;
-  Comments({
+  MeiZiComments({
     this.comment_ID,
     this.comment_post_ID,
     this.comment_author,
@@ -49,6 +49,6 @@ class Comments {
     this.sub_comment_count,
     this.text_content,
     this.pics});
-  factory Comments.fromJson(Map<String, dynamic> json) => _$CommentsFromJson(json);
-  Map<String, dynamic> toJson() => _$CommentsToJson(this);
+  factory MeiZiComments.fromJson(Map<String, dynamic> json) => _$MeiZiCommentsFromJson(json);
+  Map<String, dynamic> toJson() => _$MeiZiCommentsToJson(this);
 }

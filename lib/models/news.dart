@@ -1,34 +1,53 @@
+import 'dart:core';
+
+import 'package:json_annotation/json_annotation.dart';
+part 'news.g.dart';
+
+
+@JsonSerializable()
 class News {
+  String status;
+  int count;
+  int count_total;
+  int pages;
+  List<NewsPosts> posts;
   News({
+    this.status,
+    this.count,
+    this.count_total,
+    this.pages,
+    this.posts});
+  factory News.fromJson(Map<String, dynamic> json) => _$NewsFromJson(json);
+  Map<String, dynamic> toJson() => _$NewsToJson(this);
+}
+
+@JsonSerializable()
+class NewsPosts {
+  String id;
+  String url;
+  String title;
+  String excerpt;
+  String date;
+  String comment_count;
+  CustomFields custom_fields;
+  NewsPosts({
     this.id,
     this.url,
     this.title,
     this.excerpt,
-    this.cover,
+    this.date,
+    this.comment_count,
+    this.custom_fields});
+  factory NewsPosts.fromJson(Map<String, dynamic> json) => _$NewsPostsFromJson(json);
+  Map<String, dynamic> toJson() => _$NewsPostsToJson(this);
+}
+
+@JsonSerializable()
+class CustomFields {
+  List thumb_c;
+  CustomFields({
+    this.thumb_c
   });
-
-  final String id;
-  final String url;
-  final String title;
-  final String excerpt;
-  final String cover;
-
-  @override
-  bool operator == (Object other) {
-    identical(this, other) ||
-        other is News &&
-            id == other.id &&
-            url == other.url &&
-            title == other.title &&
-            excerpt == other.excerpt &&
-            cover == other.cover;
-  }
-
-  @override
-  int get hashCode =>
-      id.hashCode ^
-      url.hashCode ^
-      title.hashCode ^
-      excerpt.hashCode ^
-      cover.hashCode;
+  factory CustomFields.fromJson(Map<String, dynamic> json) => _$CustomFieldsFromJson(json);
+  Map<String, dynamic> toJson() => _$CustomFieldsToJson(this);
 }

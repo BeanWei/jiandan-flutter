@@ -11,7 +11,7 @@ class DuanZi {
   int total_comments;
   int page_count;
   int count;
-  List<Comments> comments;
+  List<DuanZiComments> comments;
   DuanZi({
     this.status,
     this.current_page,
@@ -24,7 +24,7 @@ class DuanZi {
 
 
 @JsonSerializable()
-class Comments {
+class DuanZiComments {
   String comment_ID;
   String comment_post_ID;
   String comment_author;
@@ -36,7 +36,7 @@ class Comments {
   String vote_negative;
   String sub_comment_count;
   String text_content;
-  Comments({
+  DuanZiComments({
     this.comment_ID,
     this.comment_post_ID,
     this.comment_author,
@@ -48,7 +48,7 @@ class Comments {
     this.vote_negative,
     this.sub_comment_count,
     this.text_content,});
-  factory Comments.fromJson(Map<String, dynamic> json) => _$CommentsFromJson(json);
-  Map<String, dynamic> toJson() => _$CommentsToJson(this);
+  factory DuanZiComments.fromJson(Map<String, dynamic> json) => _$DuanZiCommentsFromJson(json);
+  Map<String, dynamic> toJson() => _$DuanZiCommentsToJson(this);
 }
 
