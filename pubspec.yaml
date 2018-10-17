@@ -26,6 +26,7 @@ dependencies:
   connectivity: ^0.3.2
   shared_preferences: ^0.4.3
   json_annotation: ^1.0.0
+  font_awesome_flutter:
 
 dev_dependencies:
   flutter_test:
