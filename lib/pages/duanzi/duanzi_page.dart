@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:dio/dio.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:jiandan/api/api_uri.dart';
 import 'package:jiandan/common/no_network_view.dart';
@@ -78,10 +79,26 @@ class _DuanziPageState extends State<DuanziPage> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         Icon(
-          FontAwesomeIcons.
-
-        )
-      ],
+          FontAwesomeIcons.thumbsUp,
+          size: 15.0,
+          color: Colors.grey,
+        ),
+        Icon(
+          FontAwesomeIcons.thumbsDown,
+          size: 15.0,
+          color: Colors.grey,
+        ),
+        Icon(
+          FontAwesomeIcons.comments,
+          size: 15.0,
+          color: Colors.grey,
+        ),
+        Icon(
+          FontAwesomeIcons.share,
+          size: 15.0,
+          color: Colors.grey,
+        ),
+      ]
     ),
   );
 
