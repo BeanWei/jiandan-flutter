@@ -26,6 +26,7 @@ dependencies:
   connectivity: ^0.3.2
   shared_preferences: ^0.4.3
   json_annotation: ^1.0.0
+  flutter_webview_plugin: ^0.2.1
   font_awesome_flutter:
 
 dev_dependencies:
