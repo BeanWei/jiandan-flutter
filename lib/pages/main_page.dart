@@ -72,16 +72,16 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
           controller: tabController,
           children: <Widget>[
             ItemListPage(
-              key: PageStorageKey('news'),
+              item: 'news',
             ),
             ItemListPage(
-              key: PageStorageKey('duanzi'),
+              item: 'duanzi',
             ),
             ItemListPage(
-              key: PageStorageKey('meizi'),
+              item: 'meizi',
             ),
             ItemListPage(
-              key: PageStorageKey('wuliao'),
+              item: 'wuliao',
             ),
           ],
         ),
