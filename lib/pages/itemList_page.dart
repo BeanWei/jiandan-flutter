@@ -13,6 +13,7 @@ import 'package:jiandan/models/meizi.dart';
 import 'package:jiandan/models/duanzi.dart';
 import 'package:jiandan/models/wuliao.dart';
 import 'package:jiandan/models/news.dart';
+import 'package:jiandan/pages/news_component.dart';
 
 class ItemListPage extends StatefulWidget {
   final String item;
@@ -129,16 +130,32 @@ class _ItemListPageState extends State<ItemListPage> {
         );
       }
     } else {
-      return ListView.builder(
+      if (widget.item == '妹子图') {
+        return StaggeredGridView.countBuilder(
+          controller: _scrollController,
+          padding: const EdgeInsets.all(1.0),
+          crossAxisCount:
+          MediaQuery.of(context).orientation == Orientation.portrait ? 2 : 4,
+          mainAxisSpacing: 1.0,
+          itemCount: JDContentList.length,
+          crossAxisSpacing: 1.0,
+          itemBuilder: (BuildContext context, int index) =>
+              _buildImageItem(JDContentList.elementAt(index)),
+          staggeredTileBuilder: (int index) => StaggeredTile.fit(1),
+        );
+      } else {
+        return ListView.builder(
           controller: _scrollController,
           itemCount: JDContentList.length,
           itemBuilder: (BuildContext context, int index) {
-            if (JDContentList.elementAt(index).type == '福利') {
-              return _buildImageItem(JDContentList.elementAt(index).url);
+            if (widget.item == '新鲜事') {
+              return renderNewsRow(JDContentList.elementAt(index), context);
             } else {
               //return _buildTextItem(JDContentList.elementAt(index));
             }
-          });
+          }
+        );
+      }
     }
   }
 
@@ -194,27 +211,48 @@ class _ItemListPageState extends State<ItemListPage> {
       case "无聊图":
         WuLiao itemData = WuLiao.fromJson(response.data);
         for (var comment in itemData.comments) {
-          for (var p in comment.pics) {
-            JDContentList.add(p);
-          }
+          Map JDMap = {};
+          JDMap['title'] = comment.text_content;
+          JDMap['pics'] = comment.pics;
+          JDMap['vote_positive'] = comment.vote_positive;
+          JDMap['vote_negative'] = comment.vote_negative;
+          JDMap['comment_count'] = comment.sub_comment_count;
+          JDContentList.add(JDMap);
         }
         break;
       case "段子手":
         DuanZi itemData = DuanZi.fromJson(response.data);
         for (var comment in itemData.comments) {
-          JDContentList.add(comment.text_content);
+          Map JDMap = {};
+          JDMap['text_content'] = comment.text_content;
+          JDMap['vote_positive'] = comment.vote_positive;
+          JDMap['vote_negative'] = comment.vote_negative;
+          JDMap['comment_count'] = comment.sub_comment_count;
+          JDContentList.add(JDMap);
         }
         break;
       case "新鲜事":
         News itemData = News.fromJson(response.data);
-        for (var comment in itemData.posts) {
-          JDContentList.add(comment.title);
+        for (var post in itemData.posts) {
+          Map JDMap = {};
+          JDMap['url'] = post.url;
+          JDMap['title'] = post.title;
+          JDMap['date'] = post.date;
+          JDMap['comment_count'] = post.comment_count;
+          JDMap['excerpt'] = post.excerpt;
+          JDMap['cover'] = post.custom_fields.thumb_c[0];
+          JDContentList.add(JDMap);
         }
         break;
       default:
         News itemData = News.fromJson(response.data);
-        for (var comment in itemData.posts) {
-          JDContentList.add(comment.title);
+        for (var post in itemData.posts) {
+          Map JDMap = {};
+          JDMap['url'] = post.url;
+          JDMap['title'] = post.title;
+          JDMap['excerpt'] = post.excerpt;
+          JDMap['cover'] = post.custom_fields.thumb_c[0];
+          JDContentList.add(JDMap);
         }
     }
 
