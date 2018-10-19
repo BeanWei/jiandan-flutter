@@ -3,7 +3,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:jiandan/common/no_network_view.dart';
 import 'package:jiandan/common/error_view.dart';
@@ -14,6 +13,8 @@ import 'package:jiandan/models/duanzi.dart';
 import 'package:jiandan/models/wuliao.dart';
 import 'package:jiandan/models/news.dart';
 import 'package:jiandan/pages/news_component.dart';
+import 'package:jiandan/pages/duanzi_component.dart';
+import 'package:jiandan/pages/wuliao_component.dart';
 
 class ItemListPage extends StatefulWidget {
   final String item;
@@ -150,8 +151,10 @@ class _ItemListPageState extends State<ItemListPage> {
           itemBuilder: (BuildContext context, int index) {
             if (widget.item == 'news') {
               return renderNewsRow(JDContentList.elementAt(index), context);
-            } else {
-              //return _buildTextItem(JDContentList.elementAt(index));
+            } else if (widget.item == 'duanzi') {
+              return renderDuanziRow(JDContentList.elementAt(index));
+            } else if (widget.item == 'wuliao') {
+              return renderWuliaoRow(JDContentList.elementAt(index));
             }
           }
         );
@@ -257,10 +260,6 @@ class _ItemListPageState extends State<ItemListPage> {
     }
 
     setState(() {});
-  }
-
-  Widget _buildTextItem() {
-    //todo: add the text view
   }
 
   Widget _buildImageItem(String picurl) {
