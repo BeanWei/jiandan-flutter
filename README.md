@@ -17,14 +17,14 @@
 # 截图
 ### Android
 <div>
-    <img src='./Screenshots/android01.jpg' width=280>
-    <img src='./Screenshots/android02.jpg' width=280>
-    <img src='./Screenshots/android03.jpg' width=280>
+    <img src='./Screenshots/android01.png' width=280>
+    <img src='./Screenshots/android02.png' width=280>
+    <img src='./Screenshots/android03.png' width=280>
 </div>
 <div>
-    <img src='./Screenshots/android04.jpg' width=280>
-    <img src='./Screenshots/android05.jpg' width=280>
-    <img src='./Screenshots/android06.jpg' width=280>
+    <img src='./Screenshots/android04.png' width=280>
+    <img src='./Screenshots/android05.png' width=280>
+    <img src='./Screenshots/android06.png' width=280>
 </div>
 
 # LICENSE
