@@ -23,12 +23,12 @@ class News {
 
 @JsonSerializable()
 class NewsPosts {
-  String id;
+  int id;
   String url;
   String title;
   String excerpt;
   String date;
-  String comment_count;
+  int comment_count;
   CustomFields custom_fields;
   NewsPosts({
     this.id,

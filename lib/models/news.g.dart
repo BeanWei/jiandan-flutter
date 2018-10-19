@@ -28,12 +28,12 @@ Map<String, dynamic> _$NewsToJson(News instance) => <String, dynamic>{
 
 NewsPosts _$NewsPostsFromJson(Map<String, dynamic> json) {
   return NewsPosts(
-      id: json['id'] as String,
+      id: json['id'] as int,
       url: json['url'] as String,
       title: json['title'] as String,
       excerpt: json['excerpt'] as String,
       date: json['date'] as String,
-      comment_count: json['comment_count'] as String,
+      comment_count: json['comment_count'] as int,
       custom_fields: json['custom_fields'] == null
           ? null
           : CustomFields.fromJson(
