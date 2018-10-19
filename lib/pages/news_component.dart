@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:timeago/timeago.dart' as timeago;
 import 'package:jiandan/pages/news_detail_page.dart';
 
 Widget renderNewsRow(Map news, BuildContext context) {
 
   TextStyle titleTextStyle = new TextStyle(fontSize: 15.0);
   TextStyle subtitleTextStyle = new TextStyle(color: const Color(0xFFB5BDC0), fontSize: 12.0);
+
+  timeago.setLocaleMessages('zh_CN', timeago.ZhCnMessages());
 
   var titleRow = new Row(
     children: <Widget>[
@@ -20,8 +23,9 @@ Widget renderNewsRow(Map news, BuildContext context) {
         child: new Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            new Icon(Icons.access_time),
-            new Text(news['date'], style: subtitleTextStyle,),
+            new Icon(Icons.access_time, size: 12.0,),
+            new Text(timeago.format(DateTime.parse(news['date'])), style: subtitleTextStyle,),
+            //new Text(news['date'], style: subtitleTextStyle,),
           ],
         ),
       ),
@@ -30,7 +34,7 @@ Widget renderNewsRow(Map news, BuildContext context) {
         child: new Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
-            new Icon(Icons.comment),
+            new Icon(Icons.comment, size: 12.0,),
             new Text(news['comment_count'].toString(), style: subtitleTextStyle,),
           ],
         ),
@@ -39,14 +43,14 @@ Widget renderNewsRow(Map news, BuildContext context) {
   );
 
   var coverImg = new Container(
-    margin: const EdgeInsets.all(10.0),
-    width: 60.0,
-    height: 60.0,
+    //margin: const EdgeInsets.all(1.0),
+    width: 100.0,
+    height: 80.0,
     decoration: new BoxDecoration(
-      shape: BoxShape.circle,
+      shape: BoxShape.rectangle,
       color: const Color(0xFFECECEC),
       image: new DecorationImage(image: new CachedNetworkImageProvider(news['cover']), fit: BoxFit.cover),
-      border: new Border.all(color: const Color(0xFFECECEC), width: 2.0),
+      //border: new Border.all(color: const Color(0xFFECECEC), width: 2.0),
     ),
   );
 
@@ -68,7 +72,7 @@ Widget renderNewsRow(Map news, BuildContext context) {
         ),
       ),
       new Padding(
-        padding: const EdgeInsets.all(6.0),
+        padding: const EdgeInsets.all(1.0),
         child: new Container(
           width: 100.0,
           height: 80.0,
