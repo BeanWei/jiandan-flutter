@@ -130,7 +130,7 @@ class _ItemListPageState extends State<ItemListPage> {
         );
       }
     } else {
-      if (widget.item == '妹子图') {
+      if (widget.item == 'meizi') {
         return StaggeredGridView.countBuilder(
           controller: _scrollController,
           padding: const EdgeInsets.all(1.0),
@@ -148,7 +148,7 @@ class _ItemListPageState extends State<ItemListPage> {
           controller: _scrollController,
           itemCount: JDContentList.length,
           itemBuilder: (BuildContext context, int index) {
-            if (widget.item == '新鲜事') {
+            if (widget.item == 'news') {
               return renderNewsRow(JDContentList.elementAt(index), context);
             } else {
               //return _buildTextItem(JDContentList.elementAt(index));
@@ -200,7 +200,7 @@ class _ItemListPageState extends State<ItemListPage> {
       JDContentList.clear();
     }
     switch (item) {
-      case "妹子图":
+      case "meizi":
         MeiZi itemData = MeiZi.fromJson(response.data);
         for (var comment in itemData.comments) {
           for (var p in comment.pics) {
@@ -208,7 +208,7 @@ class _ItemListPageState extends State<ItemListPage> {
           }
         }
         break;
-      case "无聊图":
+      case "wuliao":
         WuLiao itemData = WuLiao.fromJson(response.data);
         for (var comment in itemData.comments) {
           Map JDMap = {};
@@ -220,7 +220,7 @@ class _ItemListPageState extends State<ItemListPage> {
           JDContentList.add(JDMap);
         }
         break;
-      case "段子手":
+      case "duanzi":
         DuanZi itemData = DuanZi.fromJson(response.data);
         for (var comment in itemData.comments) {
           Map JDMap = {};
@@ -231,7 +231,7 @@ class _ItemListPageState extends State<ItemListPage> {
           JDContentList.add(JDMap);
         }
         break;
-      case "新鲜事":
+      case "news":
         News itemData = News.fromJson(response.data);
         for (var post in itemData.posts) {
           Map JDMap = {};

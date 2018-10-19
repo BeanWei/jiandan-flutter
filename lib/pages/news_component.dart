@@ -31,7 +31,7 @@ Widget renderNewsRow(Map news, BuildContext context) {
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
             new Icon(Icons.comment),
-            new Text(news['comment_count'], style: subtitleTextStyle,),
+            new Text(news['comment_count'].toString(), style: subtitleTextStyle,),
           ],
         ),
       )

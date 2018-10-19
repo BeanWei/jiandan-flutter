@@ -90,7 +90,6 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
             children: <Widget>[
               FlutterLogo(
                 size: 150.0,
-                colors: Theme.of(context).primaryColor,
                 style: FlutterLogoStyle.horizontal,
               ),
               Divider(),
