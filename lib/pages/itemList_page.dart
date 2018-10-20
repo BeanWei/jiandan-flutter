@@ -26,7 +26,10 @@ class ItemListPage extends StatefulWidget {
   _ItemListPageState createState() => new _ItemListPageState();
 }
 
-class _ItemListPageState extends State<ItemListPage> {
+class _ItemListPageState extends State<ItemListPage> with AutomaticKeepAliveClientMixin{
+
+  @override
+  bool get wantKeepAlive => true;
 
   List JDContentList = [];
 
